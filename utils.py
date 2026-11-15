@@ -68,10 +68,10 @@ def estimate_processing_time(num_chunks: int) -> str:
 
 
 def validate_api_key() -> bool:
-    """Check GEMINI_API_KEY is set; show a quiet sidebar caption when it is."""
-    api_key = os.getenv("GEMINI_API_KEY")
-    if not api_key:
-        st.error("❌ GEMINI_API_KEY not found! Copy .env.example to .env, add your key, and restart.")
+    """Check GEMINI_API_KEY is set to a real value; show a quiet sidebar caption when it is."""
+    api_key = (os.getenv("GEMINI_API_KEY") or "").strip()
+    if not api_key or api_key.startswith("your_"):
+        st.error("❌ GEMINI_API_KEY not set. Put your key in .env.local (the tracked .env holds placeholders).")
         st.info("Get a free key at https://aistudio.google.com/apikey")
         return False
     if len(api_key) < 20:

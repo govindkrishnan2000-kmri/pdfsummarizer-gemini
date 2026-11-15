@@ -1,8 +1,8 @@
 import os
 
 import streamlit as st
-from dotenv import load_dotenv
 
+from config import load_env
 from pdf_processor import PDFProcessor
 from summarizer import PDFSummarizer
 from utils import (
@@ -13,7 +13,7 @@ from utils import (
     validate_api_key,
 )
 
-load_dotenv()
+load_env()
 
 MODELS = ["gemini-3.1-flash-lite", "gemini-3.5-flash-lite", "gemini-3.5-flash"]
 

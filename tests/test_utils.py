@@ -71,3 +71,8 @@ def test_validate_api_key_missing(monkeypatch):
 def test_validate_api_key_too_short(monkeypatch):
     monkeypatch.setenv("GEMINI_API_KEY", "short")
     assert validate_api_key() is False
+
+
+def test_validate_api_key_placeholder(monkeypatch):
+    monkeypatch.setenv("GEMINI_API_KEY", "your_gemini_api_key_here")
+    assert validate_api_key() is False

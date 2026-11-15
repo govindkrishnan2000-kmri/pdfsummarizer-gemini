@@ -2,13 +2,13 @@ import logging
 import os
 import re
 
-from dotenv import load_dotenv
 from langchain_core.runnables import Runnable, RunnableLambda
 from langchain_google_genai import ChatGoogleGenerativeAI
 
+from config import load_env
 from prompts import ANALYSIS, CHUNK_SUMMARY, COMBINE, QUOTES, STYLES
 
-load_dotenv()
+load_env()
 
 logger = logging.getLogger(__name__)
 

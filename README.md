@@ -36,10 +36,11 @@ PDF → extract text → clean → chunk (by tokens)
 python -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-cp .env.example .env             # then put your key in .env
+cp .env.example .env.local       # then put your key in .env.local
 ```
 
-`.env`:
+`.env` is tracked and holds non-secret defaults. `.env.local` is gitignored and
+overrides it (see `config.py`):
 
 ```
 GEMINI_API_KEY=your_key_here
@@ -100,4 +101,4 @@ To add a style, add an entry to `STYLES` in `prompts.py` and its name to the **S
 | `No extractable text` | The PDF is probably scanned images. Run OCR first. |
 | 429 / rate limit errors | Wait a minute, use a smaller document, or pick another model. Retries are automatic but limited. |
 | Model not available / 404 | Set `GEMINI_MODEL` to a model your key can access, or choose one in the sidebar. |
-| API key not found | Make sure `.env` exists next to `app.py` and contains `GEMINI_API_KEY`. |
+| API key not found | Put `GEMINI_API_KEY` in `.env.local` (the tracked `.env` only has placeholders). |
